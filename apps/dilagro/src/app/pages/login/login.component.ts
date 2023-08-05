@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormGroup, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, Validators, FormGroup, FormControl} from '@angular/forms';
+
+
 
 @Component({
   selector: 'seng41293-login',
@@ -14,13 +15,21 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  formGroup = new FormGroup({
-    email: new FormControl(),
-    password: new FormControl(),
+  emailCtrl = new FormControl("bhagya@gmail.com",[
+    Validators.required,
+    Validators.email,
+  ]);
+
+
+  loginFormGroup = new FormGroup({
+    email: this.emailCtrl,
+    password: new FormControl('password123', [Validators.required,Validators.minLength(6)]),
   });
 
   constructor(private router: Router) {}
   onLogin() {
-    this.router.navigate(['/admin']);
+    console.log(this.loginFormGroup.value);
+    
+     this.router.navigate(['/admin']);
   }
 }
