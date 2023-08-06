@@ -12,5 +12,5 @@ import { AdminGrnComponent } from './admin-grn/admin-grn.component';
   ]
 })
 export class AdminComponent {
-
+labelGRN = 'kasun'
 }
