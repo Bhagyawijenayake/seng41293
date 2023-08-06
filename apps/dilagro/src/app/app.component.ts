@@ -12,11 +12,5 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'dilagro';
-  name='Bhagya';
-  frameworks=['Angular','React','Vue','Ember'];
-  onClick(){
-    this.name='Bhagya sudaraka';
-    
-  }
+ 
 }

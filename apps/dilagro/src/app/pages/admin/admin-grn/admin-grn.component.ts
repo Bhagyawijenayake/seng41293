@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,5 +11,7 @@ import { CommonModule } from '@angular/common';
 export class AdminGrnComponent {
 
   @Input({required:true}) label!: string;
+
+  @Output() update = new EventEmitter<string>();
 
 }
