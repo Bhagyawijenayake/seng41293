@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,5 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./admin-grn.component.scss']
 })
 export class AdminGrnComponent {
+
+  @Input({required:true}) label!: string;
 
 }
