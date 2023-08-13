@@ -15,6 +15,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 })
 export class AppComponent {
 
-  constructor(private appService:AppService) { }
+  constructor(protected appService:AppService) { }
  
 }
