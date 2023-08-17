@@ -1,16 +1,15 @@
 {
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "files.exclude": {
-        ".*": true,
-        "jest.config.ts": true,
-        "jest.preset.js": true,
-        "node_modules": true,
-        "nx.json": true,
-        "package-lock.json": true,
-        "package.json": true,
-        "README.md": true,
-        "tools": true,
-        "tsconfig.base.json": true
-    }
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "files.exclude": {
+    ".*": true,
+    "jest.config.ts": true,
+    "jest.preset.js": true,
+    "node_modules": true,
+    "nx.json": true,
+    "package-lock.json": true,
+    "README.md": true,
+    "tools": true,
+    "tsconfig.base.json": true
+  }
 }
