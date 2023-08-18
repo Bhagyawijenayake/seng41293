@@ -15,7 +15,7 @@ import { ReactiveFormsModule, Validators, FormGroup, FormControl} from '@angular
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  emailCtrl = new FormControl("bhagya@gmail.com",[
+  emailCtrl = new FormControl("bhagyasudaraka98@gmail.com",[
     Validators.required,
     Validators.email,
   ]);
