@@ -1,4 +1,8 @@
-import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  isDevMode,
+} from '@angular/core';
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
@@ -8,17 +12,33 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { NgxsModule } from '@ngxs/store';
 import { AppState } from './state/app/app.state';
 import { provideServiceWorker } from '@angular/service-worker';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
     provideAnimations(),
-    importProvidersFrom(NgxsModule.forRoot([AppState], {
+    importProvidersFrom(
+      NgxsModule.forRoot([AppState], {
         developmentMode: true,
-    })),
+      })
+    ),
+    importProvidersFrom(
+      provideFirebaseApp(() =>
+        initializeApp({
+          apiKey: 'AIzaSyDuQlZdWFjP3cA5hUrlGjn7UNAqovAdM18',
+          authDomain: 'dilagro-8d8b9.firebaseapp.com',
+          projectId: 'dilagro-8d8b9',
+          storageBucket: 'dilagro-8d8b9.appspot.com',
+          messagingSenderId: '1032247810734',
+          appId: '1:1032247810734:web:e91084ee557e1698342b3f',
+        })
+      )
+    ),
     provideServiceWorker('ngsw-worker.js', {
-        enabled: !isDevMode(),
-        registrationStrategy: 'registerWhenStable:30000'
-    })
-],
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+  ],
 };
