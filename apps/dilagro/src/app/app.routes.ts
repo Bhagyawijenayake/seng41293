@@ -5,7 +5,8 @@ import { AdminComponent } from './pages/admin/admin.component';
 export const appRoutes: Route[] = [
     {
         path: '', 
-        component: LoginComponent
+        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent)
+        // component: LoginComponent
     },
     {
         path: 'admin',
