@@ -14,6 +14,7 @@ import { AppState } from './state/app/app.state';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,8 +26,8 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     importProvidersFrom(
-      provideFirebaseApp(() =>
-        initializeApp({
+
+        AngularFireModule.initializeApp({
           apiKey: 'AIzaSyDuQlZdWFjP3cA5hUrlGjn7UNAqovAdM18',
           authDomain: 'dilagro-8d8b9.firebaseapp.com',
           projectId: 'dilagro-8d8b9',
@@ -34,7 +35,7 @@ export const appConfig: ApplicationConfig = {
           messagingSenderId: '1032247810734',
           appId: '1:1032247810734:web:e91084ee557e1698342b3f',
         })
-      )
+
     ),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
