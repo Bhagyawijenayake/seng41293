@@ -17,6 +17,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/material-moment-adapter'
+
 
 export const appConfig: ApplicationConfig = {
   providers: [

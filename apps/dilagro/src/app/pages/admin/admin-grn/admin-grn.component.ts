@@ -7,33 +7,41 @@ import { ShowLoading } from '../../../state/app/app.actions';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import {MatCardModule} from '@angular/material/card';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
-
-interface User {
-
-  name: string;
-
-  email: string;
+interface GRN {
+date:Date;
+customer:{
+  name:string;
+  phone:string;
+}
 }
 
 @Component({
   selector: 'seng41293-admin-grn',
   standalone: true,
-  imports: [CommonModule, MatButtonModule,MatCardModule],
+  imports: [CommonModule, MatButtonModule,MatCardModule,ReactiveFormsModule,MatDatepickerModule,MatFormFieldModule],
   templateUrl: './admin-grn.component.html',
   styleUrls: ['./admin-grn.component.scss'],
 })
 export class AdminGrnComponent {
   @Input({ required: true }) label!: string;
 
-  users$: Observable<User[]>;
+  dateCtrl = new FormControl();
+  nameCtrl = new FormControl();
+  phoneCtrl = new FormControl();
+  customerCtrl = new FormGroup({
+    name: this.nameCtrl,
+    phone: this.phoneCtrl,
+  });
 
-  constructor(private httpClient: HttpClient) {
-   this.users$= this.httpClient
-      .get<User[]>('https://jsonplaceholder.typicode.com/users')
-      
-      
-  }
+  grnFormGroup = new FormGroup({
+    date: this.dateCtrl,
+    customer: this.customerCtrl,
+  });
+
 }
 
-//https://jsonplaceholder.typicode.com/photos
+
