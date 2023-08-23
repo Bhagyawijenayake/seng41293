@@ -10,7 +10,9 @@ import {
   FormControl,
 } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-
+import { Store } from '@ngxs/store';
+import { UpdateUser } from '../../state/app/app.actions';
+import { Subscription, catchError, from, tap, throwError } from 'rxjs';
 
 @Component({
   selector: 'seng41293-login',
@@ -25,7 +27,8 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private angularFireAuth: AngularFireAuth
+    private angularFireAuth: AngularFireAuth,
+    private store: Store
   ) {
     this.emailCtrl = new FormControl('bhagyasudaraka98@gmail.com', [
       Validators.required,
@@ -41,19 +44,26 @@ export class LoginComponent {
     });
   }
 
-  async onLogin() {
+  onLogin() {
     const password = this.loginFormGroup.get('password')?.value;
-    const credential= await this.angularFireAuth
-      .signInWithEmailAndPassword(this.emailCtrl.value, password)
-      .then(
-        ()=>{
-          this.router.navigate(['admin']);
-        }
-        
+
+    const authPromise = this.angularFireAuth.signInWithEmailAndPassword(
+      this.emailCtrl.value,
+      password
+    );
+
+    from(authPromise)
+      .pipe(
+        tap((credential) => {
+          if (credential.user)
+            this.store.dispatch(new UpdateUser(credential.user));
+        }),
+        tap(() => this.router.navigate(['/admin'])),
+        catchError((e) => {
+          return throwError(() => e);
+        })
       )
-  
 
-
-      
+      .subscribe();
   }
 }
