@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { Firestore,  collection,addDoc } from '@angular/fire/firestore';
 import * as moment from 'moment';
+import { collectionData } from 'rxfire/firestore';
 interface GRN {
   date: Date;
   customer: {
@@ -46,6 +47,8 @@ export class AdminGrnComponent {
   @Input({ required: true }) label!: string;
   firestore: Firestore = inject(Firestore);
 
+  grns$: Observable<GRN[]> 
+
   dateCtrl = new FormControl();
   nameCtrl = new FormControl();
   phoneCtrl = new FormControl();
@@ -61,6 +64,9 @@ export class AdminGrnComponent {
 
   grnCollection = collection(this.firestore, 'grn');
 
+  constructor() {
+    this.grns$ = collectionData(this.grnCollection)as Observable<any>;
+  }
   async onSave() {
     console.log(this.grnFormGroup.value);
     const date = new Date(this.grnFormGroup.value.date);
