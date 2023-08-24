@@ -55,4 +55,8 @@ export class AdminGrnComponent {
     date: this.dateCtrl,
     customer: this.customerCtrl,
   });
+
+  onSave() {
+    console.log(this.grnFormGroup.value);
+  }
 }

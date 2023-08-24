@@ -16,6 +16,15 @@
   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
+<mat-form-field >
+    <mat-label>Name</mat-label>
+    <input matInput [formControl]="nameCtrl">
+  </mat-form-field>
+    <mat-form-field >
+    <mat-label>Phone</mat-label>
+    <input type="number" matInput [formControl]="phoneCtrl">
+  </mat-form-field>
+  <button mat-raised-button (click)="onSave()">Save</button>
 </form>
 
 {{grnFormGroup.value | json}}
