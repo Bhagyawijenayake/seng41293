@@ -6,23 +6,37 @@ import { Store } from '@ngxs/store';
 import { ShowLoading } from '../../../state/app/app.actions';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatInputModule } from '@angular/material/input';
 
 interface GRN {
-date:Date;
-customer:{
-  name:string;
-  phone:string;
-}
+  date: Date;
+  customer: {
+    name: string;
+    phone: string;
+  };
 }
 
 @Component({
   selector: 'seng41293-admin-grn',
   standalone: true,
-  imports: [CommonModule, MatButtonModule,MatCardModule,ReactiveFormsModule,MatDatepickerModule,MatFormFieldModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule, // Import this module
+    MatMomentDateModule,
+    MatInputModule,
+  ],
   templateUrl: './admin-grn.component.html',
   styleUrls: ['./admin-grn.component.scss'],
 })
@@ -41,7 +55,4 @@ export class AdminGrnComponent {
     date: this.dateCtrl,
     customer: this.customerCtrl,
   });
-
 }
-
-
