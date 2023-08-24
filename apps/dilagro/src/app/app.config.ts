@@ -40,6 +40,7 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     importProvidersFrom(provideAuth(() => getAuth())),
+    importProvidersFrom(provideFirestore(() => getFirestore())),
     importProvidersFrom(HttpClientModule),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
